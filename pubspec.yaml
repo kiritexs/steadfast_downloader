@@ -1,0 +1,46 @@
+name: steadfast_downloader
+description: >-
+  Downloads that survive any interruption: a file streams into a .part file, resumes with HTTP Range requests, and keeps going in the background on Android, iOS and Windows.
+version: 0.1.0
+homepage: https://kiritex.com
+topics:
+  - download
+  - downloader
+  - background
+  - resume
+  - http
+
+repository: https://github.com/kiritexs/steadfast_downloader
+issue_tracker: https://github.com/kiritexs/steadfast_downloader/issues
+
+environment:
+  sdk: ^3.10.0
+  flutter: ">=3.38.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.6.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  path: ^1.9.1
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.kiritex.steadfast_downloader
+        pluginClass: SteadfastDownloaderPlugin
+      ios:
+        pluginClass: SteadfastDownloaderPlugin
+      windows:
+        pluginClass: SteadfastDownloaderPluginCApi
+      # No native code: the engine is pure Dart, the keep-alive and the
+      # notices are no-ops (lib/src/platform/dart_plugin.dart).
+      linux:
+        dartPluginClass: SteadfastDownloaderDartPlugin
+      macos:
+        dartPluginClass: SteadfastDownloaderDartPlugin

@@ -20,6 +20,24 @@ supplies fresh links when one expires and its own check of a partial. It is
 also not a queue or a download manager: you decide what runs, when, and how
 many at once.
 
+## When to use it
+
+Choose it when a download must never be lost or restarted from nothing:
+large files, unreliable connections, or links that expire.
+
+- A partial resumes only once the server is checked to be sending the same
+  file (ETag, `Last-Modified`, size); otherwise it starts again cleanly
+  rather than gluing two files together.
+- When a link expires mid-download, it asks your app for a fresh one and
+  carries on from the bytes it has.
+- It keeps your app downloading in the background on Android, iOS and
+  Windows, and on Android and iOS tells the person how each download ended.
+
+It runs inside your app. If you'd rather hand transfers to the operating
+system's own background service, with queues, uploads and scheduling,
+[`background_downloader`](https://pub.dev/packages/background_downloader) is
+the established choice.
+
 ---
 
 ## Platform support
